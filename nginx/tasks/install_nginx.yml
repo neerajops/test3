@@ -1,0 +1,17 @@
+---
+- name: install nginx
+  yum:
+    name: "{{ nginx_package }}"
+    state: present
+  when: ansible_distribution == 'CentOS'
+- name: install nginx in Ubuntu
+  apt:
+    name: "{{ nginx_package }}"       
+    state: present
+  when: ansible_distribution == 'Ubuntu'   
+- name: Ensuring  is enable
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+...    
